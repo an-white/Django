@@ -34,7 +34,6 @@ REST_FRAMEWORK = {
 # Application definition
 
 INSTALLED_APPS = [
-    # necesita ser añadido para una restAPI
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # my apps
     'quickstart',
+    'snippets',
 ]
 
 MIDDLEWARE = [
