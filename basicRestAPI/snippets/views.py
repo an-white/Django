@@ -58,6 +58,7 @@ def snippet_detail(request, pk):
 
 
 @api_view(["GET", 'POST'])
+# añadir el parametro , format=None para acceder tipo api o tipo json a los valores
 def snippet_list(request):
     """
     list all code snippets or create a new snippet
@@ -75,6 +76,7 @@ def snippet_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
+# añadir el parametro , format=None para acceder tipo api o tipo json a los valores
 def snippet_detail(request, pk):
     """
     Retrieve, update or delete a code snippet.

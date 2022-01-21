@@ -64,6 +64,7 @@ configurar una db PostGreSQL, se debe añadir en el archivo settings del modulo 
 
 **actualizar los campos de los modelos definidos y (evitar problemas de tipado)**
 con el comando makemigrations Django almacena los cambios hechos en los modelos de mis apps y los actualiza en la DB
+estos cambios incluyen, cambio de tipo de variable, refactorizado de nombres etc
 
 # crear superuser
 
