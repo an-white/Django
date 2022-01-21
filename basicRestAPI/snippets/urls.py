@@ -5,8 +5,8 @@ from snippets import views
 
 urlpatterns = [
     # añadir las nuevas rutas de snippet
-    path('snippets/', views.snippet_list),
-    path('snippets/<int:pk>/', views.snippet_detail),
+    path('snippets/', views.SnippetList.as_view()),
+    path('snippets/<int:pk>/', views.SnippetDetail.as_view()),
 ]
 
-# urlpatterns = format_suffix_patterns(urlpatterns)  # (, allowed="json") puede añadirse el parametro en la funcion format
+urlpatterns = format_suffix_patterns(urlpatterns)  # (, allowed="json") puede añadirse el parametro en la funcion format

@@ -69,3 +69,6 @@ estos cambios incluyen, cambio de tipo de variable, refactorizado de nombres etc
 # crear superuser
 
 python manage.py createsuperuser
+
+**tipos de views dentro de la app snippets**
+
