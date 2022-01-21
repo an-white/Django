@@ -24,6 +24,10 @@ añadir el nombre de la app dentro **INSTALLED_APPS** en settings.py
 vez**
 python manage.py makemigrations snippets python manage.py migrate snippets
 
+# modelos
+
+Clases que definen la estructura de la data, contienen Fields que son instancias de clases Field
+
 # crear una clase serializada
 
 permite añadir validaciones y valores por default a una clase nueva
@@ -55,4 +59,12 @@ despues serializar la respuesta
 
 `data = JSONParser().parse(stream)`
 
+configurar una db PostGreSQL, se debe añadir en el archivo settings del modulo base del proyecto
+**https://docs.djangoproject.com/en/4.0/ref/settings/#databases**
 
+**actualizar los campos de los modelos definidos y (evitar problemas de tipado)**
+con el comando makemigrations Django almacena los cambios hechos en los modelos de mis apps y los actualiza en la DB
+
+# crear superuser
+
+python manage.py createsuperuser
