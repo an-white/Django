@@ -12,7 +12,7 @@ STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
 class Snippet(models.Model):
     created = models.DateTimeField(auto_now_add=True)  # datetime field
     title = models.CharField(max_length=100, blank=True, default="")
-    code = models.TextField()
+    code = models.TextField(max_length=100)
     linenos = models.BooleanField(default=False)
     # añadir opciones a seleccionar en el campo y un valor por defecto
     language = models.CharField(choices=LANGUAGE_CHOICES, default="python", max_length=140)
