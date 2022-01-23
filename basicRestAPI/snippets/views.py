@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets
 
 from snippets.models import Snippet
 from snippets.serializers import SnippetSerializer, UserSerializer
@@ -13,46 +13,39 @@ from rest_framework import permissions
 from snippets.permissions import IsOwnerOrReadOnly
 
 # creating an endpoint for the root of our API
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 
 from rest_framework import renderers
 
 
-# using generic class-based views
-# this allows makes more compact view class and easy
-class SnippetList(generics.ListCreateAPIView):
+class SnippetViewSet(viewsets.ModelViewSet):
     """
-    list all snippets or cretea a new snippet
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+
+    Additionally we also provide an extra `highlight` action.
     """
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
-    # IsAuthenticatedOrReadOnly wil ensure that authenicated request get read-write access and the unauthenticated requests get read-only access
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly]
 
-    # add serialized representaion of the user
+    @action(detail=True, renderer_classes=[renderers.StaticHTMLRenderer])
+    def highlight(self, request, *args, **kwargs):
+        snippet = self.get_object()
+        return Response(snippet.highlighted)
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
 
-class SnippetDetail(generics.RetrieveUpdateDestroyAPIView):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    detailed snippet view, we can update and delete it
+    This viewset automatically provides `list` and `retrieve` actions,
+    and allows to us use 1 class instead 2 view class
     """
-    queryset = Snippet.objects.all()
-    serializer_class = SnippetSerializer
-    # IsAuthenticatedOrReadOnly wil ensure that authenicated request get read-write access and the unauthenticated requests get read-only access
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly]
-
-
-class UserList(generics.ListAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -63,13 +56,3 @@ def api_root(request, format=None):
         'users': reverse('user-list', request=request, format=format),
         'snippets': reverse('snippet-list', request=request, format=format)
     })
-
-
-# create an endpoint for the higlighted snippets
-class SnippetHighlight(generics.GenericAPIView):
-    queryset = Snippet.objects.all()
-    renderer_classes = [renderers.StaticHTMLRenderer]
-
-    def get(self, request, *args, **kwargs):
-        snippet = self.get_object()
-        return Response(snippet.highlighted)
