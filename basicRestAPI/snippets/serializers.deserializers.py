@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from snippets.models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
 
+
 class SnippetSerializer(serializers.Serializer):
     # definicion de campos que son serealizados y deserializados
     id = serializers.IntegerField(read_only=True)
@@ -11,15 +12,13 @@ class SnippetSerializer(serializers.Serializer):
     style = serializers.ChoiceField(choices=STYLE_CHOICES, default="friendly")
 
     def create(self, validated_data):
-        
-            create and return a new snippet instance, given the validated data
-       
+        """create and return a new snippet instance, given the validated data"""
+
         return Snippet.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-       
-            update and return an existing snippet instance, given the validated data
-        
+        """update and return an existing snippet instance, given the validated data"""
+
         instance.title = validated_data.get("title", instance.title)
         instance.code = validated_data.get("code", instance.code)
         instance.linenos = validated_data.get("linenos", instance.linenos)
