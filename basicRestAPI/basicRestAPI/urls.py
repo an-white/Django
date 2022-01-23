@@ -12,7 +12,8 @@ router.register(r"groups", views.GroupViewSet)
 urlpatterns = [
     path('', include(router.urls)),
     path('polls/', include('polls.urls')),
-    path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+    # path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     # wire up the app snippets urls to the main urls of the project
     path('', include('snippets.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 ]

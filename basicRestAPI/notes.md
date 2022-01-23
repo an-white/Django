@@ -72,3 +72,5 @@ python manage.py createsuperuser
 
 **tipos de views dentro de la app snippets**
 
+**para crear una tabla se debe hacer una migracion de la app que la genera**
+
