@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include(router.urls)),
     # set the API REST source root
     path('api-auth/', include('rest_framework.urls')),
+    path('', include('stores.urls'))
 
 ]
