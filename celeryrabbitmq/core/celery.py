@@ -4,9 +4,12 @@ import os
 
 from celery import Celery
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "celeryrabbitmq.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 
-app = Celery("celeryrabbitmq")
+"""
+nombre de la instancia de celery 'core'
+"""
+app = Celery("core")
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 
