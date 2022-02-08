@@ -2,7 +2,7 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/celeryrabbitmq" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/chat" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/venv/Include" />
       <excludeFolder url="file://$MODULE_DIR$/venv/Lib" />
       <excludeFolder url="file://$MODULE_DIR$/venv/Scripts" />
