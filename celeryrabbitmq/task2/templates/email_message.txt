@@ -1,0 +1,6 @@
+hi c: {{name|safe}}
+here is a copy of your msg:
+{{review|safe}}
+
+
+thank u
