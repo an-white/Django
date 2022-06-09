@@ -21,7 +21,7 @@ class Snippet(models.Model):
     # añadir opciones a seleccionar en el campo y un valor por defecto
     language = models.CharField(choices=LANGUAGE_CHOICES, default="python", max_length=140)
     style = models.CharField(choices=STYLE_CHOICES, default="friendly", max_length=120)
-    # user que creo el snippet
+    # user que creo el snippeton
     owner = models.ForeignKey('auth.User', related_name='snippets', on_delete=models.CASCADE)
     # representacion del codigo
     highlighted = models.TextField()
